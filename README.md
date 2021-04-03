@@ -1,2 +1,0 @@
-# Argon
- MonoGame helper library
