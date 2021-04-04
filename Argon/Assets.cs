@@ -4,6 +4,9 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Argon
 {
+    /// <summary>
+    /// Contains assets for <see cref="Argon"/>.
+    /// </summary>
     public static class Assets
     {
         public static ContentManager content;
