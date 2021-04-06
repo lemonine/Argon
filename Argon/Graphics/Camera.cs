@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Argon
+namespace Argon.Graphics
 {
     /// <summary>
     /// Uses a <see cref="Matrix"/> to offset a sprite batch.
@@ -23,8 +23,9 @@ namespace Argon
             {
                 return
                     Matrix.CreateTranslation(new Vector3(-position, 0)) *
+                    Matrix.CreateTranslation(new Vector3(origin, 0)) *
                     Matrix.CreateRotationZ(rotation) *
-                    Matrix.CreateScale(zoom) *
+                    Matrix.CreateScale(new Vector3(zoom, zoom, 1)) *
                     Matrix.CreateTranslation(new Vector3(position - origin, 0));
             }
         }

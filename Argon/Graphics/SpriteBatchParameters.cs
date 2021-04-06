@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Argon
+namespace Argon.Graphics
 {
     /// <summary>
     /// A struct that contains <see cref="SpriteBatch.Begin(SpriteSortMode, BlendState,
