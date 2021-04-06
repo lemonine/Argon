@@ -5,10 +5,12 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Argon
 {
     /// <summary>
-    /// Extends varioius XNA and Dotnet classes and structs.
+    /// Extends varioius <see cref="Microsoft.Xna.Framework"/> (XNA)
+    /// and <see cref="System"/> (.NET) classes and structs.
     /// </summary>
     public static class Extensions
     {
+        #region float extensions
         /// <summary>
         /// Converts <paramref name="angle"/> to a <see cref="Vector2"/>.
         /// </summary>
@@ -17,7 +19,8 @@ namespace Argon
         {
             return new Vector2(MathF.Cos(angle), (float)MathF.Sin(angle));
         }
-
+        #endregion
+        #region Vector2 extensions
         /// <summary>
         /// Converts <paramref name="vector"/> to an angle.
         /// </summary>
@@ -26,16 +29,25 @@ namespace Argon
         {
             return -MathF.Atan2(vector.X, vector.Y);
         }
-
+        #endregion
+        #region Rectangle extensions
         /// <summary>
-        /// Returns a random <see cref="SByte"/> (-1 or 1).
+        /// Returns an array of <see cref="Point"/>s representing the conrers of <paramref name="rectangle"/>.
         /// </summary>
-        /// <param name="random">This <see cref="Random"/> instance.</param>
-        public static sbyte NextSign(this Random random)
+        /// <param name="rectangle">This <see cref="Rectangle"/> instance.</param>
+        /// <returns></returns>
+        public static Point[] GetCorners(this Rectangle rectangle)
         {
-            return (sbyte)(random.Next(2) == 0 ? -1 : 1);
+            return new Point[]
+            {
+                new Point(rectangle.Left, rectangle.Top),
+                new Point(rectangle.Right, rectangle.Top),
+                new Point(rectangle.Left, rectangle.Bottom),
+                new Point(rectangle.Right, rectangle.Bottom)
+            };
         }
-
+        #endregion
+        #region SpriteBatch extensions
         /// <summary>
         /// Begins a new sprite batch with <paramref name="parameters"/>.
         /// </summary>
@@ -156,5 +168,6 @@ namespace Argon
             }
             DrawLine(spriteBatch, vertices[precision - 1], vertices[0], color, width, layer);
         }
+        #endregion
     }
 }
