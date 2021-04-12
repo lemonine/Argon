@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Argon.Components;
 
 namespace Argon
@@ -14,7 +15,7 @@ namespace Argon
         public Vector2 origin;
         public Vector2 scale;
         public bool active;
-        public bool visible = true;
+        public bool visible;
 
         public Entity()
         {
@@ -44,18 +45,33 @@ namespace Argon
         }
 
         /// <summary>
-        /// Instantiates the <see cref="Component"/>(s) attached to this <see cref="Entity"/>.
+        /// Impliment this to instantiate the <see cref="Component"/>(s) attached to this <see cref="Entity"/>.
         /// Call this in the constructor.
         /// </summary>
         public abstract void InstantiateComponents();
 
         /// <summary>
-        /// Updates this <see cref="Entity"/>.
+        /// Implement this to update this <see cref="Entity"/>.
         /// </summary>
         public abstract void Update();
         /// <summary>
-        /// Draws this <see cref="Entity"/>.
+        /// Implement this to draw this <see cref="Entity"/>.
         /// </summary>
-        public abstract void Draw();
+        /// <param name="spriteBatch">The actively-batching <see cref="SpriteBatch"/> instance.</param>
+        public abstract void Draw(SpriteBatch spriteBatch);
+        /// <summary>
+        /// Override this to update this <see cref="Entity"/>'s <see cref="CSprite"/>'s fields.
+        /// </summary>
+        protected virtual void UpdateSprite()
+        {
+
+        }
+        /// <summary>
+        /// Override this to update this <see cref="Entity"/>'s <see cref="CBody"/>'s fields.
+        /// </summary>
+        protected virtual void UpdateBody()
+        {
+            
+        }
     }
 }
