@@ -77,57 +77,18 @@ namespace Argon
         {
             return (float)random.NextDouble();
         }
-        #endregion
-        #region Texture2D extensions
+
         /// <summary>
-        /// Returns <paramref name="texture"/>'s <see cref="Color"/> at <paramref name="index"/>.
+        /// Returns a random <see cref="Color"/>.
         /// </summary>
-        /// <param name="texture">This <see cref="Texture2D"/> instance.</param>
-        /// <param name="index">The index to return the <see cref="Color"/> of.</param>
+        /// <param name="random">This <see cref="Random"/> instance.</param>
         /// <returns></returns>
-        public static Color GetColorData(this Texture2D texture, int index)
+        public static Color NextColor(this Random random)
         {
-            Color[] data = new Color[texture.Width * texture.Height];
-            texture.GetData(data);
-
-            return data[index];
-        }
-
-        /// <summary>
-        /// Sets <paramref name="texture"/>'s <see cref="Color"/> at <paramref name="index"/> to <paramref name="color"/>.
-        /// </summary>
-        /// <param name="texture">This <see cref="Texture2D"/> instance.</param>
-        /// <param name="index">The index to return the <see cref="Color"/> of.</param>
-        /// <param name="color">The <see cref="Color"/> to set <paramref name="texture"/>'s data index.</param>
-        public static void SetColorData(this Texture2D texture, int index, Color color)
-        {
-            Color[] data = new Color[texture.Width * texture.Height];
-            texture.GetData(data);
-            data[index] = color;
-            texture.SetData(data);
-        }
-
-        /// <summary>
-        /// Returns a blank mask of <paramref name="texture"/>. TODO - Do on gpu.
-        /// </summary>
-        /// <param name="texture">This <see cref="Texture2D"/> instance.</param>
-        /// <param name="graphicsDevice">The active <see cref="GraphicsDevice"/>.</param>
-        /// <returns></returns>
-        public static Texture2D GetMask(this Texture2D texture, GraphicsDevice graphicsDevice)
-        {
-            Color[] maskData = new Color[texture.Width * texture.Height];
-            Texture2D maskTexture = new Texture2D(graphicsDevice, texture.Width, texture.Height);
-
-            for (int i = 0; i < texture.Width * texture.Height; i++)
-            {
-                if (texture.GetColorData(i) != Color.Transparent)
-                {
-                    maskData[i] = Color.White;
-                }
-            }
-
-            maskTexture.SetData(maskData);
-            return maskTexture;
+            return new Color(
+                random.Next(255),
+                random.Next(255),
+                random.Next(255));
         }
         #endregion
     }

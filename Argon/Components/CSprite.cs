@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Argon.Graphics;
 
 namespace Argon.Components
 {
@@ -9,6 +10,7 @@ namespace Argon.Components
     public class CSprite : Component
     {
         public Texture2D texture;
+        public Texture2D mask;
         public Vector2 position;
         public Rectangle slice;
         public Color color;
@@ -58,6 +60,48 @@ namespace Argon.Components
                 scale,
                 effects,
                 layer);
+        }
+
+        /// <summary>
+        /// Draws a one-pixel wide outline around this <see cref="CSprite"/>.
+        /// TODO - Work with other <see cref="SpriteSortMode"/>s and do on GPU.
+        /// </summary>
+        ///<param name="spriteBatch">The actively-batching <see cref="SpriteBatch"/> instance.</param>
+        /// <param name="color">The <see cref="Color"/> of the outline.</param>
+        /// <param name="type">The <see cref="SpriteOutlineType"/> of the outline.</param>
+        /// <param name="sortMode"
+        public void DrawOutline(SpriteBatch spriteBatch, Color color, SpriteOutlineType type)
+        {
+            Vector2[] offsets = new Vector2[]
+            {
+                new Vector2(-1, 0),
+                new Vector2(0, -1),
+                new Vector2(1, 0),
+                new Vector2(0, 1),
+                new Vector2(-1, -1),
+                new Vector2(1, -1),
+                new Vector2(-1, 1),
+                new Vector2(1, 1)
+            };
+
+            if (mask == null)
+            {
+                mask = texture.GetMask(spriteBatch.GraphicsDevice);
+            }
+
+            for (int i = 0; i < offsets.Length / (type == SpriteOutlineType.Circle ? 2 : 1); i++)
+            {
+                spriteBatch.Draw(
+                mask,
+                position + offsets[i],
+                slice,
+                color,
+                rotation,
+                origin,
+                scale,
+                effects,
+                layer + 0.01f);
+            }    
         }
     }
 }
