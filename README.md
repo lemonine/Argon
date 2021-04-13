@@ -1,2 +1,2 @@
 # Argon
- MonoGame helper library
+ MonoGame helper library. Temporarily consult source for documentation.
