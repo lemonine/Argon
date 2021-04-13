@@ -29,15 +29,6 @@ namespace Argon
         {
             return -MathF.Atan2(vector.X, vector.Y) % MathHelper.TwoPi;
         }
-
-        /// <summary>
-        /// Normalizes this <see cref="Vector2"/>.
-        /// </summary>
-        /// <param name="vector">This <see cref="Vector2"/> instance.</param>
-        public static Vector2 Normalized(this Vector2 vector)
-        {
-            return Vector2.Normalize(vector);
-        }
         #endregion
         #region Rectangle extensions
         /// <summary>
@@ -85,9 +76,9 @@ namespace Argon
         public static Color NextColor(this Random random)
         {
             return new Color(
-                random.Next(255),
-                random.Next(255),
-                random.Next(255));
+                random.Next(256),
+                random.Next(256),
+                random.Next(256));
         }
         #endregion
     }
