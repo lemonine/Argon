@@ -11,6 +11,17 @@ namespace Argon.Components
         protected readonly Entity parent;
         public bool active;
 
+        /// <summary>
+        /// Whether or not this <see cref="Component"/> is attached to an <see cref="Entity"/>.
+        /// </summary>
+        protected bool HasParent
+        {
+            get
+            {
+                return parent != null;
+            }
+        }
+
         public Component()
         {
 
@@ -27,6 +38,11 @@ namespace Argon.Components
         /// </summary>
         public virtual void Update()
         {
+            if (HasParent && !parent.active)
+            {
+                active = false;
+            }
+
             Debug.LogIf(!active, "Inactive Component was Updated!", this);
         }
     }

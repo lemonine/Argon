@@ -22,6 +22,11 @@ namespace Argon.Components
         public Texture2D mask;
         public SpriteOutline outline;
 
+        public bool useParentPosition = true;
+        public bool useParentRotation = true;
+        public bool useParentOrigin = true;
+        public bool useParentScale = true;
+
         /// <summary>
         /// The <see cref="Texture2D"/> that will be drawn.
         /// </summary>
@@ -67,6 +72,34 @@ namespace Argon.Components
             this.layer = layer;
 
             outline = SpriteOutline.Invisible;
+        }
+
+        /// <summary>
+        /// Updates this <see cref="CSprite"/> and sets its fields to its parents' if specified.
+        /// </summary>
+        public override void Update()
+        {
+            if (HasParent)
+            {
+                if (useParentPosition)
+                {
+                    position = parent.position;
+                }
+                if (useParentRotation)
+                {
+                    rotation = parent.rotation;
+                }
+                if (useParentOrigin)
+                {
+                    origin = parent.origin;
+                }
+                if (useParentScale)
+                {
+                    scale = parent.scale;
+                }
+            }
+
+            base.Update();
         }
 
         /// <summary>

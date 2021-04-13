@@ -30,15 +30,7 @@ namespace Argon.Graphics
             {
                 return new SpriteOutline(
                     Color.Black,
-                    false,
-                    false,
-                    false,
-                    false,
-                    false,
-                    false,
-                    false,
-                    false,
-                    false);
+                    active: false);
             }
         }
         /// <summary>
@@ -53,11 +45,7 @@ namespace Argon.Graphics
                     true,
                     true,
                     true,
-                    true,
-                    false,
-                    false,
-                    false,
-                    false);
+                    true);
             }
         }
         /// <summary>
@@ -127,14 +115,14 @@ namespace Argon.Graphics
 
         public SpriteOutline(
             Color color,
-            bool left,
-            bool up,
-            bool right,
-            bool down,
-            bool upLeft,
-            bool upRight,
-            bool downLeft,
-            bool downRight,
+            bool left = false,
+            bool up = false,
+            bool right = false,
+            bool down = false,
+            bool upLeft = false,
+            bool upRight = false,
+            bool downLeft = false,
+            bool downRight = false,
             bool active = true)
         {
             this.color = color;

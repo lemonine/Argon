@@ -45,10 +45,13 @@ namespace Argon
         }
 
         /// <summary>
-        /// Impliment this to instantiate the <see cref="Component"/>(s) attached to this <see cref="Entity"/>.
+        /// Override this to instantiate the <see cref="Component"/>(s) attached to this <see cref="Entity"/>.
         /// Call this in the constructor.
         /// </summary>
-        public abstract void InstantiateComponents();
+        public virtual void InstantiateComponents()
+        {
+
+        }
 
         /// <summary>
         /// Override this to update this <see cref="Entity"/>.
@@ -66,14 +69,14 @@ namespace Argon
             Debug.LogIf(!active || !visible, "Inactive or invisible Entity was drawn!", this);
         }
         /// <summary>
-        /// Override this to update this <see cref="Entity"/>'s <see cref="CSprite"/>'s fields.
+        /// Override this to update this <see cref="Entity"/>'s <see cref="CSprite"/>.
         /// </summary>
         protected virtual void UpdateSprite()
         {
 
         }
         /// <summary>
-        /// Override this to update this <see cref="Entity"/>'s <see cref="CBody"/>'s fields.
+        /// Override this to update this <see cref="Entity"/>'s <see cref="CBody"/>.
         /// </summary>
         protected virtual void UpdateBody()
         {

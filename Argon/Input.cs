@@ -69,7 +69,7 @@ namespace Argon
         /// <summary>
         /// Returns the game's mouse position, transformed by <paramref name="camera"/>, if it is not null.
         /// </summary>
-        /// <param name="camera"></param>
+        /// <param name="camera">The camera to transform the mouse's position.</param>
         /// <returns></returns>
         public static Vector2 GetMousePosition(Camera camera = null)
         {

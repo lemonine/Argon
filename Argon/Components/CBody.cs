@@ -13,10 +13,15 @@ namespace Argon.Components
         public float terminalAngularVelocity;
         public float mass;
 
+        public bool updateParentPosition = true;
+        public bool updateParentRotation = true;
+        public bool useRawVelocity = false;
+        public bool useRawAngularVelocity = false;
+
         /// <summary>
         /// <see cref="velocity"/> multiplied by <see cref="mass"/>, capped at <see cref="terminalVelocity"/>.
         /// </summary>
-        public Vector2 VecocityCalculated
+        public Vector2 VelocityCalculated
         {
             get
             {
@@ -46,6 +51,26 @@ namespace Argon.Components
             this.velocity = velocity;
             this.angularVelocity = angularVelocity;
             this.mass = mass;
+        }
+
+        /// <summary>
+        /// Updates this <see cref="CBody"/> and sets its fields to its parents' if specified.
+        /// </summary>
+        public override void Update()
+        {
+            if (HasParent)
+            {
+                if (updateParentPosition)
+                {
+                    parent.position += useRawVelocity ? velocity : VelocityCalculated;
+                }
+                if (updateParentRotation)
+                {
+                    parent.rotation += useRawAngularVelocity ? angularVelocity : AngularVelocityCalculated;
+                }
+            }
+
+            base.Update();
         }
     }
 }
