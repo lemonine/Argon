@@ -164,12 +164,11 @@ namespace Argon.Graphics
         /// Returns a blank mask of <paramref name="texture"/>. TODO - Do on GPU.
         /// </summary>
         /// <param name="texture">This <see cref="Texture2D"/> instance.</param>
-        /// <param name="graphicsDevice">The active <see cref="GraphicsDevice"/>.</param>
         /// <returns></returns>
-        public static Texture2D GetMask(this Texture2D texture, GraphicsDevice graphicsDevice)
+        public static Texture2D CreateMask(this Texture2D texture)
         {
             Color[] maskData = new Color[texture.Width * texture.Height];
-            Texture2D maskTexture = new Texture2D(graphicsDevice, texture.Width, texture.Height);
+            Texture2D maskTexture = new Texture2D(texture.GraphicsDevice, texture.Width, texture.Height);
 
             for (int i = 0; i < texture.Width * texture.Height; i++)
             {

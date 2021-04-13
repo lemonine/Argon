@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Argon.Graphics
+namespace Argon
 {
     /// <summary>
     /// Uses a <see cref="Matrix"/> to offset a sprite batch.

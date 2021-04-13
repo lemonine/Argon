@@ -16,10 +16,10 @@ namespace Argon.Components
 
         }
 
-        public Component(Entity _parent, bool _active = true)
+        public Component(Entity parent, bool active = true)
         {
-            parent = _parent;
-            active = _active;
+            this.parent = parent;
+            this.active = active;
         }
 
         /// <summary>

@@ -37,15 +37,15 @@ namespace Argon.Components
         }
 
         public CBody(
-            Entity _parent,
-            Vector2 _velocity,
-            float _angularVelocity = 0,
-            float _mass = 0,
-            bool _active = true) : base(_parent, _active)
+            Entity parent,
+            Vector2 velocity,
+            float angularVelocity = 0,
+            float mass = 1,
+            bool active = true) : base(parent, active)
         {
-            velocity = _velocity;
-            angularVelocity = _angularVelocity;
-            mass = _mass;
+            this.velocity = velocity;
+            this.angularVelocity = angularVelocity;
+            this.mass = mass;
         }
     }
 }

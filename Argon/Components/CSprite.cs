@@ -10,7 +10,6 @@ namespace Argon.Components
     public class CSprite : Component
     {
         public Texture2D texture;
-        public Texture2D mask;
         public Vector2 position;
         public Rectangle slice;
         public Color color;
@@ -20,28 +19,31 @@ namespace Argon.Components
         public SpriteEffects effects;
         public float layer;
 
+        public Texture2D mask;
+        public SpriteOutline outline;
+
         public CSprite(
-            Entity _parent,
-            Texture2D _texture,
-            Vector2 _position,
-            Rectangle _slice,
-            Color _color,
-            float _rotation,
-            Vector2 _origin,
-            Vector2 _scale,
-            SpriteEffects _effects,
-            float _layer,
-            bool _active = true) : base(_parent, _active)
+            Entity parent,
+            Texture2D texture,
+            Vector2 position,
+            Rectangle slice,
+            Color color,
+            float rotation,
+            Vector2 origin,
+            Vector2 scale,
+            SpriteEffects effects,
+            float layer,
+            bool active = true) : base(parent, active)
         {
-            texture = _texture;
-            position = _position;
-            slice = _slice;
-            color = _color;
-            rotation = _rotation;
-            origin = _origin;
-            scale = _scale;
-            effects = _effects;
-            layer = _layer;
+            this.texture = texture;
+            this.position = position;
+            this.slice = slice;
+            this.color = color;
+            this.rotation = rotation;
+            this.origin = origin;
+            this.scale = scale;
+            this.effects = effects;
+            this.layer = layer;
         }
 
         /// <summary>
@@ -67,41 +69,27 @@ namespace Argon.Components
         /// TODO - Work with other <see cref="SpriteSortMode"/>s and do on GPU.
         /// </summary>
         ///<param name="spriteBatch">The actively-batching <see cref="SpriteBatch"/> instance.</param>
-        /// <param name="color">The <see cref="Color"/> of the outline.</param>
-        /// <param name="type">The <see cref="SpriteOutlineType"/> of the outline.</param>
         /// <param name="sortMode"
-        public void DrawOutline(SpriteBatch spriteBatch, Color color, SpriteOutlineType type)
+        public void DrawOutline(SpriteBatch spriteBatch)
         {
-            Vector2[] offsets = new Vector2[]
-            {
-                new Vector2(-1, 0),
-                new Vector2(0, -1),
-                new Vector2(1, 0),
-                new Vector2(0, 1),
-                new Vector2(-1, -1),
-                new Vector2(1, -1),
-                new Vector2(-1, 1),
-                new Vector2(1, 1)
-            };
-
             if (mask == null)
             {
-                mask = texture.GetMask(spriteBatch.GraphicsDevice);
+                mask = texture.CreateMask();
             }
 
-            for (int i = 0; i < offsets.Length / (type == SpriteOutlineType.Circle ? 2 : 1); i++)
+            foreach (Vector2 offset in outline.MaskOffsets)
             {
                 spriteBatch.Draw(
                 mask,
-                position + offsets[i],
+                position + offset,
                 slice,
-                color,
+                outline.color,
                 rotation,
                 origin,
                 scale,
                 effects,
-                layer + 0.01f);
-            }    
+                layer - 0.01f);
+            }
         }
     }
 }

@@ -22,26 +22,26 @@ namespace Argon
 
         }
 
-        public Entity(bool _active = true, bool _visible = true)
+        public Entity(bool active = true, bool visible = true)
         {
-            active = _active;
-            visible = _visible;
+            this.active = active;
+            this.visible = visible;
         }
 
         public Entity(
-            Vector2 _position,
-            float _rotation,
-            Vector2 _origin,
-            Vector2 _scale,
-            bool _active = true,
-            bool _visible = true)
+            Vector2 position,
+            float rotation,
+            Vector2 origin,
+            Vector2 scale,
+            bool active = true,
+            bool visible = true)
         {
-            position = _position;
-            rotation = _rotation;
-            origin = _origin;
-            scale = _scale;
-            active = _active;
-            visible = _visible;
+            this.position = position;
+            this.rotation = rotation;
+            this.origin = origin;
+            this.scale = scale;
+            this.active = active;
+            this.visible = visible;
         }
 
         /// <summary>
