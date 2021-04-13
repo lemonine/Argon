@@ -6,7 +6,7 @@ namespace Argon.Graphics
 {
     /// <summary>
     /// Represents an outline mask to be drawn behind a <see cref="CSprite"/>. Directional values determine
-    /// whether or not a mask should be offset in said direction.
+    /// whether or not a mask should be offset in that direction.
     /// </summary>
     public struct SpriteOutline
     {
@@ -21,6 +21,26 @@ namespace Argon.Graphics
         public bool downRight;
         public bool active;
 
+        /// <summary>
+        /// An inactive <see cref="SpriteOutline"/> that does not draw a mask in any direction.
+        /// </summary>
+        public static SpriteOutline Invisible
+        {
+            get
+            {
+                return new SpriteOutline(
+                    Color.Black,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false);
+            }
+        }
         /// <summary>
         /// A black <see cref="SpriteOutline"/> that draws a mask in four cardinal directions.
         /// </summary>
@@ -70,35 +90,35 @@ namespace Argon.Graphics
 
                 if (left)
                 {
-                    offsets.Add(Direction.Left);
+                    offsets.Add(Directions.Left);
                 }
                 if (up)
                 {
-                    offsets.Add(Direction.Up);
+                    offsets.Add(Directions.Up);
                 }
                 if (right)
                 {
-                    offsets.Add(Direction.Right);
+                    offsets.Add(Directions.Right);
                 }
                 if (down)
                 {
-                    offsets.Add(Direction.Down);
+                    offsets.Add(Directions.Down);
                 }
                 if (upLeft)
                 {
-                    offsets.Add(Direction.UpLeft);
+                    offsets.Add(Directions.UpLeft);
                 }
                 if (upRight)
                 {
-                    offsets.Add(Direction.UpRight);
+                    offsets.Add(Directions.UpRight);
                 }
                 if (downLeft)
                 {
-                    offsets.Add(Direction.DownLeft);
+                    offsets.Add(Directions.DownLeft);
                 }
                 if (downRight)
                 {
-                    offsets.Add(Direction.DownRight);
+                    offsets.Add(Directions.DownRight);
                 }
 
                 return offsets;

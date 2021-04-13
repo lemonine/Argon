@@ -34,7 +34,6 @@ namespace Argon
         /// Normalizes this <see cref="Vector2"/>.
         /// </summary>
         /// <param name="vector">This <see cref="Vector2"/> instance.</param>
-        /// <returns></returns>
         public static Vector2 Normalized(this Vector2 vector)
         {
             return Vector2.Normalize(vector);

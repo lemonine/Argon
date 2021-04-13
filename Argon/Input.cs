@@ -15,7 +15,7 @@ namespace Argon
         private static MouseState lastMouse;
 
         /// <summary>
-        /// Returns a <see cref="Vector2"/> representing the direction of the WASD or arrow <see cref="Keys"/>.
+        /// Returns a <see cref="Vector2"/> (unit vector) representing the direction of the WASD or arrow <see cref="Keys"/>.
         /// </summary>
         public static Vector2 Direction
         {

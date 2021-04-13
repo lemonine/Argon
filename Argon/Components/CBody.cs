@@ -14,7 +14,7 @@ namespace Argon.Components
         public float mass;
 
         /// <summary>
-        /// <see cref="velocity"/> multiplied by <see cref="mass"/>.
+        /// <see cref="velocity"/> multiplied by <see cref="mass"/>, capped at <see cref="terminalVelocity"/>.
         /// </summary>
         public Vector2 VecocityCalculated
         {
@@ -26,7 +26,7 @@ namespace Argon.Components
             }
         }
         /// <summary>
-        /// <see cref="angularVelocity"/> multiplied by <see cref="mass"/>.
+        /// <see cref="angularVelocity"/> multiplied by <see cref="mass"/>, capped at <see cref="terminalAngularVelocity"/>.
         /// </summary>
         public float AngularVelocityCalculated
         {

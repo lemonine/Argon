@@ -9,9 +9,9 @@ namespace Argon.Components
     /// </summary>
     public class CSprite : Component
     {
-        public Texture2D texture;
+        public Atlas atlas;
         public Vector2 position;
-        public Rectangle slice;
+        public int sliceIndex;
         public Color color;
         public float rotation;
         public Vector2 origin;
@@ -22,11 +22,32 @@ namespace Argon.Components
         public Texture2D mask;
         public SpriteOutline outline;
 
+        /// <summary>
+        /// The <see cref="Texture2D"/> that will be drawn.
+        /// </summary>
+        public Texture2D Texture
+        {
+            get
+            {
+                return atlas.texture;
+            }
+        }
+        /// <summary>
+        /// The region of <see cref="Texture"/> that will be drawn.
+        /// </summary>
+        public Rectangle Slice
+        {
+            get
+            {
+                return atlas.slices[sliceIndex];
+            }
+        }
+
         public CSprite(
             Entity parent,
-            Texture2D texture,
+            Atlas atlas,
             Vector2 position,
-            Rectangle slice,
+            int sliceIndex,
             Color color,
             float rotation,
             Vector2 origin,
@@ -35,15 +56,17 @@ namespace Argon.Components
             float layer,
             bool active = true) : base(parent, active)
         {
-            this.texture = texture;
+            this.atlas = atlas;
             this.position = position;
-            this.slice = slice;
+            this.sliceIndex = sliceIndex;
             this.color = color;
             this.rotation = rotation;
             this.origin = origin;
             this.scale = scale;
             this.effects = effects;
             this.layer = layer;
+
+            outline = SpriteOutline.Invisible;
         }
 
         /// <summary>
@@ -52,16 +75,22 @@ namespace Argon.Components
         /// <param name="spriteBatch">The actively-batching <see cref="SpriteBatch"/> instance.</param>
         public void Draw(SpriteBatch spriteBatch)
         {
+            Vector2 position = new Vector2(
+                    (int)this.position.X,
+                    (int)this.position.Y);
+
             spriteBatch.Draw(
-                texture,
+                Texture,
                 position,
-                slice,
+                Slice,
                 color,
                 rotation,
                 origin,
                 scale,
                 effects,
                 layer);
+
+            Debug.LogIf(!active, "Inactive CSprite was drawn.", this);
         }
 
         /// <summary>
@@ -74,21 +103,31 @@ namespace Argon.Components
         {
             if (mask == null)
             {
-                mask = texture.CreateMask();
+                mask = Texture.CreateMask();
+                Debug.Log("Mask was null, a new mask was created", this);
             }
 
             foreach (Vector2 offset in outline.MaskOffsets)
             {
+                Vector2 position = new Vector2(
+                    (int)this.position.X + offset.X,
+                    (int)this.position.Y + offset.Y);
+
                 spriteBatch.Draw(
                 mask,
-                position + offset,
-                slice,
+                position,
+                Slice,
                 outline.color,
                 rotation,
                 origin,
                 scale,
                 effects,
                 layer - 0.01f);
+            }
+
+            if (!outline.active)
+            {
+                Debug.LogIf(!outline.active, "Inactive or invisible SpriteOutline was drawn", this);
             }
         }
     }

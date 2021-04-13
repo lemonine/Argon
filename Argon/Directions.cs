@@ -5,7 +5,7 @@ namespace Argon
     /// <summary>
     /// Provides properties for cardinal and diagonal directions.
     /// </summary>
-    public static class Direction
+    public static class Directions
     {
         public static Vector2 Left
         {

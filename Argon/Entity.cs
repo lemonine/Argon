@@ -51,14 +51,20 @@ namespace Argon
         public abstract void InstantiateComponents();
 
         /// <summary>
-        /// Implement this to update this <see cref="Entity"/>.
+        /// Override this to update this <see cref="Entity"/>.
         /// </summary>
-        public abstract void Update();
+        public virtual void Update()
+        {
+            Debug.LogIf(!active, "Inactive Entity was updated!", this);
+        }
         /// <summary>
-        /// Implement this to draw this <see cref="Entity"/>.
+        /// Override this to draw this <see cref="Entity"/>.
         /// </summary>
         /// <param name="spriteBatch">The actively-batching <see cref="SpriteBatch"/> instance.</param>
-        public abstract void Draw(SpriteBatch spriteBatch);
+        public virtual void Draw(SpriteBatch spriteBatch)
+        {
+            Debug.LogIf(!active || !visible, "Inactive or invisible Entity was drawn!", this);
+        }
         /// <summary>
         /// Override this to update this <see cref="Entity"/>'s <see cref="CSprite"/>'s fields.
         /// </summary>

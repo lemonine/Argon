@@ -27,7 +27,7 @@ namespace Argon.Components
         /// </summary>
         public virtual void Update()
         {
-
+            Debug.LogIf(!active, "Inactive Component was Updated!", this);
         }
     }
 }
