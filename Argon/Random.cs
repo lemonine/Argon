@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Argon.Graphics;
 
 namespace Argon
 {
@@ -74,6 +75,16 @@ namespace Argon
                 random.Next(256),
                 random.Next(256),
                 random.Next(256));
+        }
+
+        /// <summary>
+        /// Returns a random <see cref="Color"/> from <paramref name="palette"/>.
+        /// </summary>
+        /// <param name="palette">The <see cref="Palette"/> to return a <see cref="Color"/> from.</param>
+        /// <returns></returns>
+        public static Color Color(Palette palette)
+        {
+            return palette.colors[FromRange(0, palette.Size)];
         }
 
         /// <summary>
