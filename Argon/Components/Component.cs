@@ -43,7 +43,8 @@ namespace Argon.Components
                 active = false;
             }
 
-            Debug.LogIf(!active, "Inactive Component was Updated!", this);
+            Debug.LogIf(!active, "Inactive Component was updated.", this);
+            Debug.LogIf(!HasParent, "Parentless Component in use.", this);
         }
     }
 }

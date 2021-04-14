@@ -44,6 +44,16 @@ namespace Argon
                 return direction;
             }
         }
+        /// <summary>
+        /// Returns the positon of the mouse in screen coordinates.
+        /// </summary>
+        public static Vector2 MousePosition
+        {
+            get
+            {
+                return mouse.Position.ToVector2();
+            }
+        }
 
         /// <summary>
         /// Updates the user's input into this class's fields.
@@ -64,23 +74,6 @@ namespace Argon
         public static bool IsKeyPressed(Keys key)
         {
             return keyboard.IsKeyDown(key);
-        }
-
-        /// <summary>
-        /// Returns the game's mouse position, transformed by <paramref name="camera"/>, if it is not null.
-        /// </summary>
-        /// <param name="camera">The camera to transform the mouse's position.</param>
-        /// <returns></returns>
-        public static Vector2 GetMousePosition(Camera camera = null)
-        {
-            Vector2 mousePosition = mouse.Position.ToVector2();
-
-            if (camera != null)
-            {
-                return Vector2.Transform(mousePosition, camera.View);
-            }
-
-            return mousePosition;
         }
     }
 }

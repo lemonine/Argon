@@ -147,6 +147,19 @@ namespace Argon.Graphics
         }
 
         /// <summary>
+        /// Returns this <see cref="Texture2D"/>'s data as a 1-dimensional array of <see cref="Colors"/>.
+        /// </summary>
+        /// <param name="texture">This <see cref="Texture2D"/> instance.</param>
+        /// <returns></returns>
+        public static Color[] GetColorData(this Texture2D texture)
+        {
+            Color[] data = new Color[texture.Width * texture.Height];
+            texture.GetData(data);
+
+            return data;
+        }
+
+        /// <summary>
         /// Sets <paramref name="texture"/>'s <see cref="Color"/> at <paramref name="index"/> to <paramref name="color"/>.
         /// </summary>
         /// <param name="texture">This <see cref="Texture2D"/> instance.</param>
@@ -158,6 +171,19 @@ namespace Argon.Graphics
             texture.GetData(data);
             data[index] = color;
             texture.SetData(data);
+        }
+
+        /// <summary>
+        /// Sets this <see cref="Texture2D"/>s pixel data to <paramref name="data"/>.
+        /// </summary>
+        /// <param name="texture">This <see cref="Texture2D"/> instance.</param>
+        /// <param name="data">The data to assigign to this <see cref="Texture2D"/>.</param>
+        public static void SetColorData(this Texture2D texture, Color[] data)
+        {
+            for (int i = 0; i < texture.Width * texture.Height; i++)
+            {
+                SetColorData(texture, i, data[i]);
+            }
         }
 
         /// <summary>
