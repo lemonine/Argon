@@ -18,7 +18,7 @@
             }
             else
             {
-                System.Diagnostics.Debug.WriteLine(logger + ": " + value);
+                System.Diagnostics.Debug.WriteLine(logger == null ? "Logger unknown" : logger + ": " + value);
             }
         }
 

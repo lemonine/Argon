@@ -44,7 +44,7 @@ namespace Argon.Components
             }
 
             Debug.LogIf(!active, "Inactive Component was updated.", this);
-            Debug.LogIf(!HasParent, "Parentless Component in use.", this);
+            Debug.LogIf(!HasParent, "Parentless Component was updated.", this);
         }
     }
 }

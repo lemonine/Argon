@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Argon.Graphics
 {
     /// <summary>
-    /// Provides various extensions to <see cref="Microsoft.Xna.Framework"/> (XNA) classes.
+    /// Adds extension methods to varioius to <see cref="Microsoft.Xna.Framework"/> (XNA) classes.
     /// </summary>
     public static class GraphicsExtensions
     {

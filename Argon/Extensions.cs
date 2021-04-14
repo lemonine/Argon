@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Argon
 {
     /// <summary>
-    /// Extends varioius <see cref="Microsoft.Xna.Framework"/> (XNA)
+    /// Adds extension methods to varioius <see cref="Microsoft.Xna.Framework"/> (XNA)
     /// and <see cref="System"/> (.NET) classes and structs.
     /// </summary>
     public static class Extensions
@@ -45,6 +45,15 @@ namespace Argon
                 new Point(rectangle.Left, rectangle.Bottom),
                 new Point(rectangle.Right, rectangle.Bottom)
             };
+        }
+
+        /// <summary>
+        /// Returns the area of <paramref name="rectangle"/>.
+        /// </summary>
+        /// <param name="rectangle">This <see cref="Rectangle"/> instance.</param>
+        public static int GetArea(this Rectangle rectangle)
+        {
+            return rectangle.Width * rectangle.Height;
         }
         #endregion
     }
