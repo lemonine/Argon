@@ -47,39 +47,5 @@ namespace Argon
             };
         }
         #endregion
-        #region Random (class) extensions
-        /// <summary>
-        /// Returns -1 or 1.
-        /// </summary>
-        /// <param name="random">This <see cref="Random"/> instance.</param>
-        /// <returns></returns>
-        public static sbyte NextSign(this Random random)
-        {
-            return (sbyte)(random.Next(2) == 0 ? -1 : 1);
-        }
-
-        /// <summary>
-        /// Returns a single-precision floating-point number.
-        /// </summary>
-        /// <param name="random">This <see cref="Random"/> instance.</param>
-        /// <returns></returns>
-        public static float NextFloat(this Random random)
-        {
-            return (float)random.NextDouble();
-        }
-
-        /// <summary>
-        /// Returns a random <see cref="Color"/>.
-        /// </summary>
-        /// <param name="random">This <see cref="Random"/> instance.</param>
-        /// <returns></returns>
-        public static Color NextColor(this Random random)
-        {
-            return new Color(
-                random.Next(256),
-                random.Next(256),
-                random.Next(256));
-        }
-        #endregion
     }
 }
