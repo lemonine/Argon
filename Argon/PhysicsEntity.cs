@@ -4,7 +4,7 @@ using Argon.Components;
 namespace Argon
 {
     /// <summary>
-    /// The base class for <see cref="Argon"/> game objects. Entities can be updated, drawn, and have components
+    /// The base class for physics-based <see cref="Argon"/> game objects. Entities can be updated, drawn, and have components
     /// attatched to them. <see cref="PhysicsEntity"/> and <see cref="SpriteEntity"/> have a <see cref="CSprite"/> attached to them.
     /// </summary>
     public class PhysicsEntity : SpriteEntity

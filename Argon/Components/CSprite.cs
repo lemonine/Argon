@@ -137,7 +137,7 @@ namespace Argon.Components
             if (mask == null)
             {
                 mask = Texture.CreateMask();
-                Debug.Log("Mask was null, a new mask was created", this);
+                Debug.Log("Outline mask was null, a new mask was created", this);
             }
 
             foreach (Vector2 offset in outline.MaskOffsets)
