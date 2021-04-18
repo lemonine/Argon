@@ -45,7 +45,7 @@ namespace Argon
         }
 
         /// <summary>
-        /// Updates this <see cref="SpriteEntity"/>'s <see cref="CSprite"/>. /// Override this to update this <see cref="Entity"/>'s <see cref="CSprite"/>.
+        /// Updates this <see cref="SpriteEntity"/>'s <see cref="CSprite"/>.  Override this to update this <see cref="Entity"/>'s <see cref="CSprite"/>.
         /// </summary>
         protected override void UpdateSprite()
         {

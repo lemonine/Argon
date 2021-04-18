@@ -11,7 +11,7 @@ namespace Argon.Components
     {
         public Atlas atlas;
         public Vector2 position;
-        public int sliceIndex;
+        public Rectangle slice;
         public Color color;
         public float rotation;
         public Vector2 origin;
@@ -37,22 +37,12 @@ namespace Argon.Components
                 return atlas.texture;
             }
         }
-        /// <summary>
-        /// The region of <see cref="Texture"/> that will be drawn.
-        /// </summary>
-        public Rectangle Slice
-        {
-            get
-            {
-                return atlas.slices[sliceIndex];
-            }
-        }
 
         public CSprite(
             Entity parent,
             Atlas atlas,
             Vector2 position,
-            int sliceIndex,
+            Rectangle slice,
             Color color,
             float rotation,
             Vector2 origin,
@@ -63,7 +53,7 @@ namespace Argon.Components
         {
             this.atlas = atlas;
             this.position = position;
-            this.sliceIndex = sliceIndex;
+            this.slice = slice;
             this.color = color;
             this.rotation = rotation;
             this.origin = origin;
@@ -115,7 +105,7 @@ namespace Argon.Components
             spriteBatch.Draw(
                 Texture,
                 position,
-                Slice,
+                slice,
                 color,
                 rotation,
                 origin,
@@ -131,7 +121,6 @@ namespace Argon.Components
         /// TODO - Work with other <see cref="SpriteSortMode"/>s and do on GPU.
         /// </summary>
         ///<param name="spriteBatch">The actively-batching <see cref="SpriteBatch"/> instance.</param>
-        /// <param name="sortMode"
         public void DrawOutline(SpriteBatch spriteBatch)
         {
             if (mask == null)
@@ -149,7 +138,7 @@ namespace Argon.Components
                 spriteBatch.Draw(
                 mask,
                 position,
-                Slice,
+                slice,
                 outline.color,
                 rotation,
                 origin,

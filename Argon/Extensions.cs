@@ -55,6 +55,37 @@ namespace Argon
         {
             return rectangle.Width * rectangle.Height;
         }
+
+        /// <summary>
+        /// Returns whether or not <paramref name="circle"/> falls within this <see cref="Rectangle"/>'s bounds.
+        /// </summary>
+        /// <param name="rectangle">This <see cref="Rectangle"/> instance.</param>
+        /// <param name="circle">The <see cref="Circle"/> to check.</param>
+        public static bool Contains(this Rectangle rectangle, Circle circle)
+        {
+            if (rectangle.Contains(circle.Center))
+            {
+                if (circle.X - rectangle.Left >= circle.radius &&
+                    rectangle.Right - circle.X >= circle.radius &&
+                    circle.Y - rectangle.Top >= circle.radius &&
+                    rectangle.Bottom - circle.Y >= circle.radius)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Returns whether or not <paramref name="circle"/> overlaps with <paramref name="rectangle"/>.
+        /// </summary>
+        /// <param name="rectangle">This <see cref="Rectangle"/> instance.</param>
+        /// <param name="circle">The <see cref="Circle"/> to check.</param>
+        public static bool Overlaps(this Rectangle rectangle, Circle circle)
+        {
+            return circle.Overlaps(rectangle);
+        }
         #endregion
     }
 }

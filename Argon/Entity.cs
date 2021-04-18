@@ -48,11 +48,10 @@ namespace Argon
         /// Override this to instantiate the <see cref="Component"/>(s) attached to this <see cref="Entity"/>.
         /// Call this in the constructor.
         /// </summary>
-        public virtual void InstantiateComponents()
+        protected virtual void InstantiateComponents()
         {
 
         }
-
         /// <summary>
         /// Override this to update this <see cref="Entity"/>.
         /// </summary>
@@ -81,6 +80,43 @@ namespace Argon
         protected virtual void UpdateBody()
         {
             
+        }
+        /// <summary>
+        /// Override this to update this <see cref="Entity"/>'s <see cref="CCollider"/>. Has no base logic.
+        /// </summary>
+        protected virtual void UpdateCollider()
+        {
+
+        }
+        /// <summary>
+        /// This is called when a collision occurs with another <see cref="Entity"/>.
+        /// Override this to add custom events on collision. Has no base logic.
+        /// </summary>
+        /// <param name="entity">The <see cref="Entity"/> that collided with this <see cref="Entity"/>.</param>
+        /// <param name="caller">The <see cref="CCollider"/> that called this method.</param>
+        public virtual void OnCollisionBegin(Entity entity, CCollider caller)
+        {
+
+        }
+        /// <summary>
+        /// This is called when a collision has been occuring for at least on frame with another
+        /// <see cref="Entity"/>. Override this to add custom events on collision. Has no base logic.
+        /// </summary>
+        /// <param name="entity">The <see cref="Entity"/> that collided with this <see cref="Entity"/>.</param>
+        /// <param name="caller">The <see cref="CCollider"/> that called this method.</param>
+        public virtual void OnCollisionRemain(Entity entity, CCollider caller)
+        {
+
+        }
+        /// <summary>
+        /// This is called when a collision has ended with another <see cref="Entity"/>.
+        /// Override this to add custom events on collision. Has no base logic.
+        /// </summary>
+        /// <param name="entity">The <see cref="Entity"/> that collided with this <see cref="Entity"/>.</param>
+        /// <param name="caller">The <see cref="CCollider"/> that called this method.</param>
+        public virtual void OnCollisionEnd(Entity entity, CCollider caller)
+        {
+
         }
     }
 }
