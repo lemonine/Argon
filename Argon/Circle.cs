@@ -123,7 +123,7 @@ namespace Argon
         /// <param name="rectangle"></param>
         public bool Overlaps(Rectangle rectangle)
         {
-            
+            return true;
         }
 
         /// <summary>

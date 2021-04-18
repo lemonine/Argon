@@ -208,5 +208,17 @@ namespace Argon.Graphics
             return maskTexture;
         }
         #endregion
+        #region GraphicsDevice extensions
+        /// <summary>
+        /// Retuns a 1x1 pixel <see cref="Texture2D"/>.
+        /// </summary>
+        /// <param name="graphicsDevice">This <see cref="GraphicsDevice"/> instance.</param>
+        public static Texture2D CreatePixelTexture(this GraphicsDevice graphicsDevice)
+        {
+            Texture2D pixel = new Texture2D(graphicsDevice, 1, 1);
+            pixel.SetColorData(0, Color.White);
+            return pixel;
+        }
+        #endregion
     }
 }

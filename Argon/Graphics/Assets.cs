@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using Argon.Graphics;
 
 namespace Argon
 {
@@ -17,8 +18,7 @@ namespace Argon
         {
             content = _content;
 
-            pixelTexture = new Texture2D(graphicsDevice, 1, 1);
-            pixelTexture.SetData(new Color[] { Color.White });
+            pixelTexture = graphicsDevice.CreatePixelTexture();
         }
     }
 }
