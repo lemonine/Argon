@@ -45,21 +45,39 @@ namespace Argon.Components
             this.radius = radius;
         }
 
-        public override void CheckCollisions(CCollider collider)
+        public override void CheckCollisions(Entity entity)
         {
-            base.Update();
+            base.CheckCollisions(entity);
 
-            Update();
-        }
+            List<CCollider> colliders = new List<CCollider>();
 
-        public override void Update()
-        {
-            base.Update();
-
-            if (useParentPosition)
+            foreach (Component component in entity.components)
             {
-                X = (int)parent.position.X;
-                Y = (int)parent.position.Y;
+                if (component is CCollider collider)
+                {
+                    colliders.Add(collider);
+                }
+            }
+
+            foreach (CCollider collider in colliders)
+            {
+                if (collider is CColliderCircle colliderCircle)
+                {
+                    if (Circle.Overlaps(colliderCircle.Circle))
+                    {
+                        isColliding = true;
+                        CallParentMethods(entity, colliderCircle);
+                    }
+                }
+
+                if (collider is CColliderRectangle colliderRectangle)
+                {
+                    if (Circle.Overlaps(colliderRectangle.Bounds))
+                    {
+                        isColliding = true;
+                        CallParentMethods(entity, colliderRectangle);
+                    }
+                }
             }
         }
 

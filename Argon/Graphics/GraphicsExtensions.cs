@@ -29,26 +29,26 @@ namespace Argon.Graphics
 
         /// <summary>
         /// Draws a line from <paramref name="pointA"/> to <paramref name="pointB"/>, with a tint of <paramref name="color"/>,
-        /// a width of <paramref name="width"/>, and a depth of <paramref name="layer"/>.
+        /// a thickness of <paramref name="thickness"/>, and a depth of <paramref name="layer"/>.
         /// </summary>
         /// <param name="spriteBatch">This <see cref="SpriteBatch"/> instance.</param>
         /// <param name="pointA">The start of this line</param>
         /// <param name="pointB">The end of this line.</param>
         /// <param name="color">The <see cref="Color"/> of this line.</param>
-        /// <param name="width">The width of this line.</param>
+        /// <param name="thickness">The thickness of this line.</param>
         /// <param name="layer">The depth of this line.</param>
         public static void DrawLine(
             this SpriteBatch spriteBatch,
             Vector2 pointA,
             Vector2 pointB,
             Color color,
-            float width = 1,
+            float thickness = 1,
             float layer = 0)
         {
-            Vector2 position = new Vector2(pointA.X, pointA.Y - width);
+            Vector2 position = new Vector2(pointA.X, pointA.Y - thickness);
             float rotation = (pointB - pointA).ToAngle();
-            Vector2 origin = Vector2.UnitX / width * width;
-            Vector2 scale = new Vector2(width, (pointB - pointA).Length());
+            Vector2 origin = Vector2.UnitX / thickness * thickness;
+            Vector2 scale = new Vector2(thickness, (pointB - pointA).Length());
 
             spriteBatch.Draw(
                 Assets.pixelTexture,
@@ -63,19 +63,19 @@ namespace Argon.Graphics
         }
 
         /// <summary>
-        /// Draws an outline of <paramref name="rectangle"/>, with a tint of <paramref name="color"/>, a width of <paramref name="width"/>,
+        /// Draws an outline of <paramref name="rectangle"/>, with a tint of <paramref name="color"/>, a thickness of <paramref name="thickness"/>,
         /// and a depth of <paramref name="layer"/>.
         /// </summary>
         /// <param name="spriteBatch">This <see cref="SpriteBatch"/> instance</param>
         /// <param name="rectangle">The <see cref="Rectangle"/> to draw.</param>
         /// <param name="color">The <see cref="Color"/> of this line.</param>
-        /// <param name="width">The width of this line.</param>
+        /// <param name="thickness">The thickness of this line.</param>
         /// <param name="layer">The depth of this line.</param>
         public static void DrawRectangle(
             this SpriteBatch spriteBatch,
             Rectangle rectangle,
             Color color,
-            float width = 1,
+            float thickness = 1,
             float layer = 0)
         {
             Vector2[] vertices = new Vector2[]
@@ -88,20 +88,66 @@ namespace Argon.Graphics
 
             for (int i = 0; i < vertices.Length - 1; i++)
             {
-                DrawLine(spriteBatch, vertices[i], vertices[i + 1], color, width, layer);
+                DrawLine(spriteBatch, vertices[i], vertices[i + 1], color, thickness, layer);
             }
-            DrawLine(spriteBatch, vertices[vertices.Length - 1], vertices[0], color, width, layer);
+            DrawLine(spriteBatch, vertices[vertices.Length - 1], vertices[0], color, thickness, layer);
+        }
+
+        /// <summary>
+        /// Draws an outline of <paramref name="rectangle"/>, with a tint of <paramref name="color"/>, a thickness of <paramref name="thickness"/>,
+        /// and a depth of <paramref name="layer"/>.
+        /// </summary>
+        /// <param name="spriteBatch">This <see cref="SpriteBatch"/> instance</param>
+        /// <param name="x">The left coordinate of the rectangle to draw.</param>
+        /// <param name="y">The right coordinate of the rectangle to draw.</param>
+        /// <param name="width">The width of the rectangle to draw.</param>
+        /// <param name="height">The height of the rectangle to draw.</param>
+        /// <param name="color">The <see cref="Color"/> of this line.</param>
+        /// <param name="thickness">The thickness of this line.</param>
+        /// <param name="layer">The depth of this line.</param>
+        public static void DrawRectangle(
+            this SpriteBatch spriteBatch,
+            int x,
+            int y,
+            int width,
+            int height,
+            Color color,
+            float thickness = 1,
+            float layer = 0)
+        {
+            spriteBatch.DrawRectangle(new Rectangle(x, y, width, height), color, thickness, layer);
         }
 
         /// <summary>
         /// Draws an outline of a circle at <paramref name="center"/>, with a radius of <paramref name="radius"/>, with a tint
-        /// of <paramref name="color"/>, with a width of <paramref name="width"/>, and a depth of <paramref name="depth"/>.
+        /// of <paramref name="color"/>, with a thickness of <paramref name="thickness"/>, and a depth of <paramref name="depth"/>.
+        /// </summary>
+        /// <param name="spriteBatch">This <see cref="SpriteBatch"/> instance.</param>
+        /// <param name="circle">The circle to draw.</param>
+        /// <param name="color">The <see cref="Color"/> of the circle</param>
+        /// <param name="thickness">The thickness of the  circle.</param>
+        /// <param name="precision">The amount of sides of the circle.</param>
+        /// <param name="layer">The depth of the circle.</param>
+        public static void DrawCircle(
+            this SpriteBatch spriteBatch,
+            Circle circle,
+            Color color,
+            float thickness = 1,
+            int precision = 16,
+            float layer = 0)
+        {
+            spriteBatch.DrawCircle(circle.Center, circle.radius, color, thickness, precision, layer);
+        }
+
+        /// <summary>
+        /// Draws an outline of a circle at <paramref name="center"/>, with a radius of <paramref name="radius"/>, with a tint
+        /// of <paramref name="color"/>, with a thickness of <paramref name="thickness"/>, and a depth of <paramref name="depth"/>.
         /// </summary>
         /// <param name="spriteBatch">This <see cref="SpriteBatch"/> instance.</param>
         /// <param name="center">The center of the circle.</param>
         /// <param name="radius">The radius of the circle</param>
         /// <param name="color">The <see cref="Color"/> of the circle</param>
-        /// <param name="width">The width of the  circle.</param>
+        /// <param name="thickness">The thickness of the  circle.</param>
         /// <param name="precision">The amount of sides of the circle.</param>
         /// <param name="layer">The depth of the circle.</param>
         public static void DrawCircle(
@@ -109,7 +155,7 @@ namespace Argon.Graphics
             Vector2 center,
             float radius,
             Color color,
-            float width = 1,
+            float thickness = 1,
             int precision = 16,
             float layer = 0)
         {
@@ -126,9 +172,9 @@ namespace Argon.Graphics
 
             for (int i = 0; i < precision - 1; i++)
             {
-                DrawLine(spriteBatch, vertices[i], vertices[i + 1], color, width, layer);
+                DrawLine(spriteBatch, vertices[i], vertices[i + 1], color, thickness, layer);
             }
-            DrawLine(spriteBatch, vertices[precision - 1], vertices[0], color, width, layer);
+            DrawLine(spriteBatch, vertices[precision - 1], vertices[0], color, thickness, layer);
         }
         #endregion
         #region Texture2D extensions

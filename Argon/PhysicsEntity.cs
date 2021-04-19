@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Argon.Components;
 
 namespace Argon
@@ -9,16 +10,16 @@ namespace Argon
     /// </summary>
     public class PhysicsEntity : SpriteEntity
     {
-        protected CBody physics;
+        public CBody physics;
 
-        public PhysicsEntity()
+        public PhysicsEntity() : base()
         {
-
+            components = new List<Component>();
         }
 
         public PhysicsEntity(bool active = true, bool visible = true) : base(active, visible)
         {
-
+            components = new List<Component>();
         }
 
         public PhysicsEntity(

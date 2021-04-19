@@ -11,7 +11,7 @@ namespace Argon
     /// </summary>
     public class SpriteEntity : Entity
     {
-        protected CSprite sprite;
+        public CSprite sprite;
 
         public SpriteEntity()
         {

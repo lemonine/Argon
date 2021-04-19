@@ -123,7 +123,13 @@ namespace Argon
         /// <param name="rectangle"></param>
         public bool Overlaps(Rectangle rectangle)
         {
-            return true;
+            Vector2 nearest = new Vector2(
+                MathF.Max(rectangle.X, MathF.Min(X, rectangle.X + rectangle.Width)),
+                MathF.Max(rectangle.Y, MathF.Min(Y, rectangle.Y + rectangle.Height)));
+
+            Vector2 delta = Center - nearest;
+
+            return MathF.Pow(delta.X, 2) + MathF.Pow(delta.Y, 2) < MathF.Pow(radius, 2);
         }
 
         /// <summary>

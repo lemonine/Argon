@@ -10,14 +10,10 @@ namespace Argon
     /// </summary>
     public static class Assets
     {
-        public static ContentManager content;
-
         public static Texture2D pixelTexture;
 
-        public static void Load(ContentManager _content, GraphicsDevice graphicsDevice)
+        public static void Load(GraphicsDevice graphicsDevice)
         {
-            content = _content;
-
             pixelTexture = graphicsDevice.CreatePixelTexture();
         }
     }

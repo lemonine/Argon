@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Argon.Components;
 
@@ -16,6 +17,8 @@ namespace Argon
         public Vector2 scale;
         public bool active;
         public bool visible;
+
+        public List<Component> components;
 
         public Entity()
         {
@@ -44,14 +47,6 @@ namespace Argon
             this.visible = visible;
         }
 
-        /// <summary>
-        /// Override this to instantiate the <see cref="Component"/>(s) attached to this <see cref="Entity"/>.
-        /// Call this in the constructor.
-        /// </summary>
-        protected virtual void InstantiateComponents()
-        {
-
-        }
         /// <summary>
         /// Override this to update this <see cref="Entity"/>.
         /// </summary>
@@ -93,8 +88,9 @@ namespace Argon
         /// Override this to add custom events on collision. Has no base logic.
         /// </summary>
         /// <param name="entity">The <see cref="Entity"/> that collided with this <see cref="Entity"/>.</param>
+        /// <param name="collider">The collider that this <see cref="Entity"/> collided with.</param>
         /// <param name="caller">The <see cref="CCollider"/> that called this method.</param>
-        public virtual void OnCollisionBegin(Entity entity, CCollider caller)
+        public virtual void OnCollisionBegin(Entity entity, CCollider collider, CCollider caller)
         {
 
         }
@@ -103,8 +99,9 @@ namespace Argon
         /// <see cref="Entity"/>. Override this to add custom events on collision. Has no base logic.
         /// </summary>
         /// <param name="entity">The <see cref="Entity"/> that collided with this <see cref="Entity"/>.</param>
+        /// /// <param name="collider">The collider that this <see cref="Entity"/> collided with.</param>
         /// <param name="caller">The <see cref="CCollider"/> that called this method.</param>
-        public virtual void OnCollisionRemain(Entity entity, CCollider caller)
+        public virtual void OnCollisionRemain(Entity entity, CCollider collider, CCollider caller)
         {
 
         }
@@ -113,8 +110,9 @@ namespace Argon
         /// Override this to add custom events on collision. Has no base logic.
         /// </summary>
         /// <param name="entity">The <see cref="Entity"/> that collided with this <see cref="Entity"/>.</param>
+        /// /// <param name="collider">The collider that this <see cref="Entity"/> collided with.</param>
         /// <param name="caller">The <see cref="CCollider"/> that called this method.</param>
-        public virtual void OnCollisionEnd(Entity entity, CCollider caller)
+        public virtual void OnCollisionEnd(Entity entity, CCollider collider, CCollider caller)
         {
 
         }

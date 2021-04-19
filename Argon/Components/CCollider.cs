@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Argon.Components
@@ -29,10 +28,42 @@ namespace Argon.Components
         /// Updates this <see cref="CCollider"/>. Call this BEFORE updating the child and call
         /// Update() (parameterless overload) after updating the child.
         /// </summary>
-        /// <param name="collider">The <see cref="CCollider"/> to check.</param>
-        public virtual void CheckCollisions(CCollider collider)
+        /// <param name="entity">The <see cref="Entity"/> to check.</param>
+        public virtual void CheckCollisions(Entity entity)
         {
             wasColliding = isColliding;
+        }
+        
+        /// <summary>
+        /// Calls methods in the parent to let them know what type of collisions are occuring.
+        /// </summary>
+        /// <param name="entity">The <see cref="Entity"/> that collider with this
+        /// <see cref="CCollider"/>'s parent.</param>
+        public void CallParentMethods(Entity entity, CCollider collider)
+        {
+            if (isColliding && !wasColliding)
+            {
+                parent.OnCollisionBegin(entity, collider, this);
+            }
+            else if (isColliding && wasColliding)
+            {
+                parent.OnCollisionRemain(entity, collider, this);
+            }
+            else if (!isColliding && wasColliding)
+            {
+                parent.OnCollisionEnd(entity, collider, this);
+            }
+        }
+
+        public override void Update()
+        {
+            if (useParentPosition)
+            {
+                X = (int)parent.position.X;
+                Y = (int)parent.position.Y;
+            }
+
+            base.Update();
         }
 
         /// <summary>
